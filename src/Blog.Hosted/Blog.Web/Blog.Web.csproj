@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\blog.redis.asiaJobs\Blog.Jobs\Blog.Jobs.csproj" />
-      <ProjectReference Include="..\Blog.Service\Blog.Service.csproj" />
+      <ProjectReference Include="..\..\Blog.Service\Blog.Service.csproj" />
+      <ProjectReference Include="..\Blog.Jobs\Blog.Jobs.csproj" />
     </ItemGroup>
 
 </Project>

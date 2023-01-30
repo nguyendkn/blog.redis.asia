@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\blog.redis.asia\Blog.Service\Blog.Service.csproj" />
+      <ProjectReference Include="..\..\Blog.Service\Blog.Service.csproj" />
     </ItemGroup>
 
 </Project>
