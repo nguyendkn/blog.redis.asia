@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Hangfire.AspNetCore" Version="1.8.0-rc2" />
+      <PackageReference Include="Hangfire.Dashboard.Basic.Authentication" Version="5.0.0" />
+      <PackageReference Include="Hangfire.Mongo" Version="1.9.1" />
+      <PackageReference Include="JsonSubTypes" Version="2.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+      <PackageReference Include="StackExchange.Redis" Version="2.6.90" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Blog.Packages\Package.Mongo\Package.Mongo.csproj" />
+      <ProjectReference Include="..\Blog.Packages\Package.Notion\Package.Notion.csproj" />
+    </ItemGroup>
+
+</Project>

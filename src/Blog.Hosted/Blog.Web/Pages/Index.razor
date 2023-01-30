@@ -1,0 +1,121 @@
+﻿@page "/"
+@using Blog.Domain.DbContexts
+@using Blog.Domain.Aggregates.PostAggregate
+
+<PageTitle>Index</PageTitle>
+
+<div class="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8">
+    <div class="grid gap-10 lg:gap-10 md:grid-cols-2 ">
+        @for (var i = 0; i < (Posts.Count >= 2 ? 2 : Posts.Count); i++)
+        {
+            <div class="cursor-pointer group">
+                <div class=" overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105">
+                    <a class="relative block aspect-video" href="/post/@Posts[i].Slug">
+                        <img alt="Thumbnail" sizes="(max-width: 768px) 30vw, 33vw" srcset="@Posts[i].Cover" decoding="async" data-nimg="fill" class="transition-all object-cover" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent" src="@Posts[i].Cover">
+                    </a>
+                </div>
+                <div class="">
+                    <div>
+                        <div class="flex gap-3">
+                            <a href="/category/technology">
+                                <span class="inline-block text-xs font-medium tracking-wider uppercase   mt-5 text-blue-600">Technology</span>
+                            </a>
+                        </div>
+                        <h2 class="text-lg font-semibold leading-snug tracking-tight mt-2    dark:text-white">
+                            <a href="/post/@Posts[i].Slug">
+                                <span class="bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">@Posts[i].Title</span>
+                            </a>
+                        </h2>
+                        <div class="hidden">
+                            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
+                                <a href="/post/@Posts[i].Slug">Reinvention often comes in spurts, after a long period of silence. Just as modern architecture recently enjoyed a comeback, brand architecture, a field with well-established principles for decades</a>
+                            </p>
+                        </div>
+                        <div class="flex items-center mt-3 space-x-3 text-gray-500 dark:text-gray-400">
+                            <div class="flex items-center gap-3">
+                                <div class="relative flex-shrink-0 w-5 h-5">
+                                    <img alt="Mario Sanchez" sizes="20px" srcset="@Posts[i].Cover" src="@Posts[i].Cover" decoding="async" data-nimg="fill" class="rounded-full object-cover" loading="lazy" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent">
+                                </div>
+                                <span class="text-sm">Mario Sanchez</span>
+                            </div>
+                            <span class="text-xs text-gray-300 dark:text-gray-600">•</span>
+                            <time class="text-sm" datetime="@Posts[i].CreatedTime">@Posts[i].CreatedTime.ToString("D")</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
+        @for (var i = 2; i < (Posts.Count); i++)
+        {
+            <div class="cursor-pointer group">
+                <div class=" overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105">
+                    <a class="relative block aspect-square" href="/post/14-architectural-design-ideas-for-spacious-interior">
+                        <img alt="Thumbnail" sizes="(max-width: 768px) 30vw, 33vw" srcset="@Posts[i].Cover" decoding="async" data-nimg="fill" class="transition-all object-cover" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent" src="@Posts[i].Cover">
+                    </a>
+                </div>
+                <div class="">
+                    <div>
+                        <div class="flex gap-3">
+                            @{
+                                var tags = Posts[i].Tags;
+                            }
+                            @if (tags != null && tags.Any())
+                            {
+                                foreach (var item in tags)
+                                {
+                                    <a href="/category/design">
+                                        <span class="inline-block text-xs font-medium tracking-wider uppercase mt-5 text-blue-600">@item</span>
+                                    </a>
+                                }
+                            }
+                        </div>
+                        <h2 class="text-lg font-semibold leading-snug tracking-tight mt-2    dark:text-white">
+                            <a href="/post/14-architectural-design-ideas-for-spacious-interior">
+                                <span class="bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
+                                    @Posts[i].Title
+                                </span>
+                            </a>
+                        </h2>
+                        <div class="hidden">
+                            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
+                                <a href="/post/14-architectural-design-ideas-for-spacious-interior">It is a cliche philosophical question, but it touches on something fundamental about how humans relate to the world around them. </a>
+                            </p>
+                        </div>
+                        <div class="flex items-center mt-3 space-x-3 text-gray-500 dark:text-gray-400">
+                            <div class="flex items-center gap-3">
+                                <div class="relative flex-shrink-0 w-5 h-5">
+                                    <img alt="Mario Sanchez" sizes="20px" srcset="@Posts[i].Cover" src="@Posts[i].Cover" decoding="async" data-nimg="fill" class="rounded-full object-cover" loading="lazy" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent">
+                                </div>
+                                <span class="text-sm">Mario Sanchez</span>
+                            </div>
+                            <span class="text-xs text-gray-300 dark:text-gray-600">•</span>
+                            <time class="text-sm" datetime="2022-10-21T06:05:00.000Z">October 21, 2022</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Inject]
+    private BlogContext Context { get; set; } = default!;
+
+    private List<Post> Posts { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FetchAsync();
+        await base.OnInitializedAsync();
+    }
+
+    private async Task FetchAsync()
+    {
+        Posts = await Context.Posts.ToListAsync();
+    }
+
+}
